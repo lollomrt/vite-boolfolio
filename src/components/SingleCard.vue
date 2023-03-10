@@ -25,15 +25,18 @@ export default {
                     <div class="card-body">
                         <div class="card-title">
                             <h5>{{ project.title }}</h5>
+                            <p><strong>Categoria: </strong>{{ project.category == null ? 'non disponibile' :
+                                project.category.title }}</p>
                             <p>{{ project.content }}</p>
                         </div>
                     </div>
                 </div>
                 <div class="bottom">
-                    <div class="card-body tags mx-3 px-0">
-                        <div>
-                            <span class="badge badge-custom">prova</span>
-                        </div>
+                    <div class="card-body d-flex tags mx-3 px-0">
+                        <span class="me-1"><strong>Tag: </strong></span>
+                        <span class="d-flex flex-wrap gap-1 flex-row">
+                            <span v-for="tec in project.technologies" class=" badge-custom">{{ tec.name }}</span>
+                        </span>
                     </div>
                     <div class="card-body">
                         <a href="#" class="btn btn-custom">
@@ -76,6 +79,8 @@ export default {
             background-color: #3f2b96;
             color: #a8c0ff;
             text-transform: uppercase;
+            padding: 0 0.5rem;
+            border-radius: 0.2rem;
         }
 
         img {
