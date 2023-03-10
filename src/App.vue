@@ -1,19 +1,16 @@
 <script>
 
 import ProjectMain from './components/ProjectMain.vue';
-import pd from './components/pd.vue'
 
 export default {
-  compotents: {
-    ProjectMain,
-    pd
+  components: {
+    ProjectMain
   }
 }
 </script>
 
 <template>
-  <!-- <ProjectMain /> -->
-  <pd></pd>
+  <ProjectMain />
 </template>
 
 <style lang="scss" scoped></style>
