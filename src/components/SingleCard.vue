@@ -27,7 +27,8 @@ export default {
                             <h5>{{ project.title }}</h5>
                             <p><strong>Categoria: </strong>{{ project.category == null ? 'non disponibile' :
                                 project.category.title }}</p>
-                            <p>{{ project.content }}</p>
+                            <p>{{ project.content ? `${(project.content).substring(0, 50)}${'...'}` : 'non disponibile' }}
+                            </p>
                         </div>
                     </div>
                 </div>
