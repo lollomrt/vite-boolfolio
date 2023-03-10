@@ -14,11 +14,13 @@ export default {
         SingleProject
     },
     methods: {
-        getProjects() {
+        getProjects(project_page) {
             store.loading = true;
-            axios.get(`${store.baseUrl}/api/project`).then((response) => {
+            axios.get(`${store.baseUrl}/api/project`, { params: { page: project_page } }).then((response) => {
                 if (response.data.success) {
-                    store.projects = response.data.results
+                    store.projects = response.data.results.data
+                    store.currentPage = response.data.results.current_page
+                    store.lastPage = response.data.results.last_page
                     store.loading = false;
                 }
                 else {
@@ -28,7 +30,7 @@ export default {
         }
     },
     mounted() {
-        this.getProjects();
+        this.getProjects(store.currentPage);
     }
 }
 </script>
@@ -44,19 +46,37 @@ export default {
                 <div></div>
             </div>
         </div>
-        <div v-else class="container-fluid bg-fancy">
+        <div v-else class="container-fluid bg-fancy d-flex flex-column align-items-center">
             <div class="container">
                 <div class="row">
                     <div class="col-12 py-5">
                         <h2>Lista dei progetti</h2>
                     </div>
-                    <div class="col-12">
+                    <div class="col-12 pb-5">
                         <div class="container g-0 cards-container mx-0 d-flex flex-wrap">
                             <SingleProject />
                         </div>
                     </div>
                 </div>
             </div>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li :class="store.currentPage === 1 ? 'disabled' : 'page-item'">
+                        <button class="page-link bgv" @click="getProjects(store.currentPage - 1)" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only"></span>
+                        </button>
+                    </li>
+                    <li v-for="i in store.lastPage" class="page-item"><button class="page-link" @click="getProjects(i)">{{ i
+                    }}</button></li>
+                    <li :class="store.currentPage === store.lastPage ? 'disabled' : 'page-item'">
+                        <button class="page-link" @click="getProjects(store.currentPage + 1)" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only"></span>
+                        </button>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </div>
 </template>
