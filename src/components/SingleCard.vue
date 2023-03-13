@@ -13,51 +13,90 @@ export default {
 
 <template>
     <div class="col-12">
-        <div class="container g-0 cards-container mx-0 d-flex flex-wrap">
-            <div class="card card-projects d-flex justify-content-between" v-for="project in store.projects"
-                :key="project.id">
-                <div class="up">
-                    <div class="card-image-top position-relative">
-                        <img :src="project.cover_image != null ? `${store.baseUrl}/storage/${project.cover_image}` : 'https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png'"
-                            :alt="project.title">
-                        <div class="position-absolute hover-img"></div>
+        <div class="container g-0">
+            <a href="#" class="g-0 cards-container mx-0 d-flex flex-wrap">
+                <div class="card card-projects d-flex justify-content-between" v-for="project in store.projects"
+                    :key="project.id">
+                    <div class="up">
+                        <div class="card-image-top position-relative">
+                            <img :src="project.cover_image != null ? `${store.baseUrl}/storage/${project.cover_image}` : 'https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png'"
+                                :alt="project.title">
+                            <div class="position-absolute hover-img"></div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-title">
+                                <h5>{{ project.title }}</h5>
+                                <p><strong>Categoria: </strong>{{ project.category == null ? 'non disponibile' :
+                                    project.category.title }}</p>
+                                <p>{{ project.content ? `${(project.content).substring(0, 50)}${'...'}` : 'non disponibile'
+                                }}
+                                </p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <div class="card-title">
-                            <h5>{{ project.title }}</h5>
-                            <p><strong>Categoria: </strong>{{ project.category == null ? 'non disponibile' :
-                                project.category.title }}</p>
-                            <p>{{ project.content ? `${(project.content).substring(0, 50)}${'...'}` : 'non disponibile' }}
-                            </p>
+                    <div class="bottom">
+                        <div class="card-body d-flex align-items-center tags mx-3 px-0">
+                            <span class="me-1 title"><strong>Tag: </strong></span>
+                            <span v-if="project.technologies !== null" class="d-flex flex-wrap gap-1 flex-row">
+                                <span v-for="tec in project.technologies" class="badge-custom d-flex">{{ tec.name }}</span>
+                            </span>
+                            <span v-else class="d-flex flex-wrap gap-1 flex-row">
+                                <span>Non disponibile</span>
+                            </span>
+                        </div>
+                        <div class="card-body">
+                            <a href="#" class="btn btn-custom">
+                                Visualizza progetto
+                            </a>
                         </div>
                     </div>
                 </div>
-                <div class="bottom">
-                    <div class="card-body d-flex tags mx-3 px-0">
-                        <span class="me-1"><strong>Tag: </strong></span>
-                        <span class="d-flex flex-wrap gap-1 flex-row">
-                            <span v-for="tec in project.technologies" class=" badge-custom">{{ tec.name }}</span>
-                        </span>
-                    </div>
-                    <div class="card-body">
-                        <a href="#" class="btn btn-custom">
-                            Visualizza progetto
-                        </a>
-                    </div>
-                </div>
-            </div>
+            </a>
         </div>
     </div>
 </template>
 
 <style lang="scss" scoped>
+a {
+    text-decoration: none;
+    color: #202020;
+
+    h5 {
+        color: #3f2b96;
+    }
+}
+
 .cards-container {
 
+
     gap: 1rem;
+
+    .card-projects {
+        transition: 0.3s;
+
+        &:hover {
+            background-color: #a8c0ff;
+            transform: translate(0, -10px);
+
+            .tags {
+                border-top: 2px solid #5f4abd;
+                border-bottom: 2px solid #5f4abd;
+            }
+
+            .hover-img {
+                background-color: #a8c0ff;
+            }
+        }
+    }
 
     .tags {
         border-top: 2px solid #a8c0ff;
         border-bottom: 2px solid #a8c0ff;
+        font-size: 12px;
+
+        .title {
+            font-size: 16px;
+        }
     }
 
     .btn-custom {

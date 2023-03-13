@@ -1,16 +1,17 @@
 <script>
 
-import ProjectMain from './components/ProjectMain.vue';
+// import ProjectMain from './components/ProjectMain.vue';
 
 export default {
-  components: {
-    ProjectMain
-  }
+  // components: {
+  //   ProjectMain
+  // }
 }
 </script>
 
 <template>
-  <ProjectMain />
+  <!-- <ProjectMain /> -->
+  <router-view></router-view>
 </template>
 
 <style lang="scss">

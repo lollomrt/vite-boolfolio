@@ -49,10 +49,10 @@ export default {
         <div v-else class="container-fluid bg-fancy d-flex flex-column align-items-center">
             <div class="container">
                 <div class="row">
-                    <div class="col-12 py-5">
+                    <div class="col-12 my-5 py-3 back-title">
                         <h2>Lista dei progetti</h2>
                     </div>
-                    <div class="col-12 pb-5">
+                    <div class="col-12 pb-5 px-0">
                         <div class="container g-0 cards-container mx-0 d-flex flex-wrap">
                             <SingleProject />
                         </div>
@@ -83,7 +83,17 @@ export default {
 
 <style lang="scss" scoped>
 .bg-fancy {
+    background: #a8c0ff;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #a8c0ff, #3f2b96);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #a8c0ff, #3f2b96);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.back-title {
     background-color: #3f2b96;
+    color: #a8c0ff;
 }
 
 .loader-container {
@@ -113,6 +123,10 @@ export default {
     border-radius: 50%;
     background: #fff;
     animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+
+.pagination>li>.disabled {
+    background-color: red !Important;
 }
 
 .lds-ellipsis div:nth-child(1) {
