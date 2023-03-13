@@ -36,7 +36,7 @@ export default {
 </script>
 
 <template>
-    <div class="position-relative container-fluid m-0 p-0">
+    <div class="position-relative container-fluid m-0 p-0 mh-100">
         <div v-if="store.loading"
             class="container-fluid m-0 p-0 loader-container d-flex align-items-center justify-content-center position-absolute">
             <div class="lds-ellipsis">
@@ -82,6 +82,10 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+mh-100 {
+    min-height: 100vh;
+}
+
 .bg-fancy {
     background: #a8c0ff;
     /* fallback for old browsers */

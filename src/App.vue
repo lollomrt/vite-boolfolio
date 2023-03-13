@@ -1,17 +1,20 @@
 <script>
 
 // import ProjectMain from './components/ProjectMain.vue';
+import AppHeader from './components/AppHeader.vue'
 
 export default {
-  // components: {
-  //   ProjectMain
-  // }
+  components: {
+    AppHeader
+  }
 }
 </script>
 
 <template>
-  <!-- <ProjectMain /> -->
-  <router-view></router-view>
+  <AppHeader></AppHeader>
+  <div class="main up-76">
+    <router-view></router-view>
+  </div>
 </template>
 
 <style lang="scss">
@@ -27,5 +30,10 @@ p {
 
 .card-title {
   margin: 0;
+}
+
+.up-75 {
+  padding-top: 175px;
+  margin-top: 175px;
 }
 </style>

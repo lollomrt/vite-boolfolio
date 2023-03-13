@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 
 //2 - Importare le componenti delle pagine
 import HomePage from './pages/HomePage.vue';
+import ProjectMain from './components/ProjectMain.vue'
 
 //3 - Creare l'oggetto router
 const router = createRouter({
@@ -12,6 +13,11 @@ const router = createRouter({
             path: '/',
             name: 'homepage',
             component: HomePage
+        },
+        {
+            path: '/projects',
+            name: 'projects',
+            component: ProjectMain
         }
     ]
 })
