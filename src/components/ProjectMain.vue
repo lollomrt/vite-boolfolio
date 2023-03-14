@@ -1,7 +1,7 @@
 <script>
 
 import axios from 'axios';
-import SingleProject from './SingleCard.vue';
+import SingleCard from './SingleCard.vue';
 import { store } from '../store.js'
 
 export default {
@@ -11,7 +11,7 @@ export default {
         }
     },
     components: {
-        SingleProject
+        SingleCard
     },
     methods: {
         getProjects(project_page) {
@@ -36,7 +36,7 @@ export default {
 </script>
 
 <template>
-    <div class="position-relative container-fluid m-0 p-0 mh-100">
+    <div class="position-relative container-fluid m-0 p-0 mh-100 w-100">
         <div v-if="store.loading"
             class="container-fluid m-0 p-0 loader-container d-flex align-items-center justify-content-center position-absolute">
             <div class="lds-ellipsis">
@@ -54,7 +54,7 @@ export default {
                     </div>
                     <div class="col-12 pb-5 px-0">
                         <div class="container g-0 cards-container mx-0 d-flex flex-wrap">
-                            <SingleProject />
+                            <SingleCard />
                         </div>
                     </div>
                 </div>

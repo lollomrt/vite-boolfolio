@@ -1,6 +1,7 @@
 <script>
 
-import { store } from '../store.js'
+import { store } from '../store.js';
+import axios from 'axios';
 
 export default {
     data() {
@@ -21,7 +22,7 @@ export default {
                         <div class="card-image-top position-relative">
                             <img :src="project.cover_image != null ? `${store.baseUrl}/storage/${project.cover_image}` : 'https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png'"
                                 :alt="project.title">
-                            <div class="position-absolute hover-img"></div>
+                            <div v-if="project.cover_image === null" class="position-absolute hover-img"></div>
                         </div>
                         <div class="card-body">
                             <div class="card-title">
@@ -45,9 +46,10 @@ export default {
                             </span>
                         </div>
                         <div class="card-body">
-                            <a href="#" class="btn btn-custom">
+                            <router-link :to="{ name: 'single-project', params: { slug: project.slug } }"
+                                class="btn btn-custom">
                                 Visualizza progetto
-                            </a>
+                            </router-link>
                         </div>
                     </div>
                 </div>

@@ -4,6 +4,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 //2 - Importare le componenti delle pagine
 import HomePage from './pages/HomePage.vue';
 import ProjectMain from './components/ProjectMain.vue'
+import SingleProject from './components/SingleProject.vue'
 
 //3 - Creare l'oggetto router
 const router = createRouter({
@@ -18,6 +19,11 @@ const router = createRouter({
             path: '/projects',
             name: 'projects',
             component: ProjectMain
+        },
+        {
+            path: '/projects/:slug', //con :nome_parametro andiamo a passare il parametro per visualizzare il dettaglio di quel progetto (coincide con quello dato in api.php in Laravel)
+            name: 'single-project',
+            component: SingleProject
         }
     ]
 })
