@@ -19,7 +19,8 @@ export default {
                 this.loading = false;
             }
             else {
-                'messaggio di errore'
+                //redirect pagina 404
+                this.$router.push({ name: 'not-found' })
             }
         })
     }
