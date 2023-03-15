@@ -6,6 +6,7 @@ import HomePage from './pages/HomePage.vue';
 import ProjectMain from './components/ProjectMain.vue'
 import SingleProject from './components/SingleProject.vue'
 import NotFound from './components/NotFound.vue'
+import Contacts from './components/Contacts.vue'
 
 //3 - Creare l'oggetto router
 const router = createRouter({
@@ -25,6 +26,11 @@ const router = createRouter({
             path: '/projects/:slug', //con :nome_parametro andiamo a passare il parametro per visualizzare il dettaglio di quel progetto (coincide con quello dato in api.php in Laravel)
             name: 'single-project',
             component: SingleProject
+        },
+        {
+            path: '/contact', //con :nome_parametro andiamo a passare il parametro per visualizzare il dettaglio di quel progetto (coincide con quello dato in api.php in Laravel)
+            name: 'contacts',
+            component: Contacts
         },
         // Mettere la 404 SEMPRE per ultima, sennò la trova per prima e non visualizza le altre pagine
         {

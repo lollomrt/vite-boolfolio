@@ -12,9 +12,7 @@ export default {
 
 <template>
   <AppHeader></AppHeader>
-  <div class="main up-76">
-    <router-view></router-view>
-  </div>
+  <router-view></router-view>
 </template>
 
 <style lang="scss">
@@ -30,10 +28,5 @@ p {
 
 .card-title {
   margin: 0;
-}
-
-.up-75 {
-  padding-top: 175px;
-  margin-top: 175px;
 }
 </style>
