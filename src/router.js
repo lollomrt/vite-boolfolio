@@ -3,10 +3,11 @@ import { createRouter, createWebHistory } from 'vue-router';
 
 //2 - Importare le componenti delle pagine
 import HomePage from './pages/HomePage.vue';
-import ProjectMain from './components/ProjectMain.vue'
-import SingleProject from './components/SingleProject.vue'
-import NotFound from './components/NotFound.vue'
-import Contacts from './components/Contacts.vue'
+import ProjectMain from './components/ProjectMain.vue';
+import SingleProject from './components/SingleProject.vue';
+import NotFound from './components/NotFound.vue';
+import Contacts from './components/Contacts.vue';
+import ThankYou from './components/ThankYou.vue';
 
 //3 - Creare l'oggetto router
 const router = createRouter({
@@ -31,6 +32,11 @@ const router = createRouter({
             path: '/contact', //con :nome_parametro andiamo a passare il parametro per visualizzare il dettaglio di quel progetto (coincide con quello dato in api.php in Laravel)
             name: 'contacts',
             component: Contacts
+        },
+        {
+            path: '/thank-you', //con :nome_parametro andiamo a passare il parametro per visualizzare il dettaglio di quel progetto (coincide con quello dato in api.php in Laravel)
+            name: 'thankyou',
+            component: ThankYou
         },
         // Mettere la 404 SEMPRE per ultima, sennò la trova per prima e non visualizza le altre pagine
         {

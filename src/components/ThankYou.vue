@@ -8,8 +8,8 @@ export default {
 <template>
     <div class="container-fluid m-0 p-0 mh-100">
         <div class="container-fluid bg-fancy d-flex flex-column align-items-center justify-content-center">
-            <h2 class="error404">404</h2>
-            <h3>pagina non trovata</h3>
+            <h2 class="error404">Grazie</h2>
+            <h3>Ti risponderò il prima possibile!</h3>
             <router-link :to="{ name: 'projects' }" class="btn my-3 btn-custom">
                 Torna ai progetti
             </router-link>

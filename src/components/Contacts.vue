@@ -43,6 +43,10 @@ export default {
                     this.message = '';
                     this.success = true;
                     this.loading = false;
+
+                    setTimeout(() => {
+                        this.$router.push({ 'name': 'thankyou' })
+                    }, 1000)
                 }
             });
         }
