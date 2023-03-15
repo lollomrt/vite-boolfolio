@@ -56,8 +56,8 @@ export default {
             <div class="row padding-bottom-5">
                 <div class="col-8 ps-0">
                     <div class="form-container p-3">
-                        <form action="">
-                            <div @submit.prevent="sendForm()" class="row">
+                        <form @submit.prevent="sendForm()">
+                            <div class="row">
                                 <div class="col-6">
                                     <label for="nome" class="control-label text-white">Nome</label>
                                     <input type="text" class="form-control" name="nome" id="nome"
@@ -110,13 +110,13 @@ export default {
                     </div>
                 </div>
                 <!-- <div class="col-12">
-                        <div class="map-container">
-                            <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2980.7582459319883!2d13.329527915498431!3d41.66096507924004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13255a5c47297dbd%3A0x83973da3129017b3!2sRefrigerio%20-%20Produzione%20ghiaccio%20alimentare!5e0!3m2!1sit!2sit!4v1678891071313!5m2!1sit!2sit"
-                                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                                referrerpolicy="no-referrer-when-downgrade"></iframe>
-                        </div>
-                    </div> -->
+                            <div class="map-container">
+                                <iframe
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2980.7582459319883!2d13.329527915498431!3d41.66096507924004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13255a5c47297dbd%3A0x83973da3129017b3!2sRefrigerio%20-%20Produzione%20ghiaccio%20alimentare!5e0!3m2!1sit!2sit!4v1678891071313!5m2!1sit!2sit"
+                                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </div>
+                        </div> -->
             </div>
         </div>
     </div>
