@@ -11,7 +11,9 @@ export default {
             email: '',
             phone: '',
             message: '',
-            errors: null
+            errors: {},
+            success: false,
+            loading: false
         }
     },
     methods: {
@@ -21,12 +23,17 @@ export default {
                 surname: this.surname,
                 email: this.email,
                 phone: this.phone,
-                message: this.message
+                message: this.message,
             }
 
+            this.loading = true;
+            this.errors = null;
+
             axios.post(`${store.baseUrl}/api/contacts`, data).then((response) => {
-                if (!this.success) {
+
+                if (!response.data.success) {
                     this.errors = response.data.errors
+                    this.loading = false
                 }
                 else {
                     this.name = '';
@@ -34,6 +41,8 @@ export default {
                     this.email = '';
                     this.phone = '';
                     this.message = '';
+                    this.success = true;
+                    this.loading = false;
                 }
             });
         }
@@ -56,35 +65,59 @@ export default {
             <div class="row padding-bottom-5">
                 <div class="col-8 ps-0">
                     <div class="form-container p-3">
+                        <div v-if="success">
+                            <p class="success">Messaggio inviato con successo!</p>
+                        </div>
                         <form @submit.prevent="sendForm()">
                             <div class="row">
                                 <div class="col-6">
                                     <label for="nome" class="control-label text-white">Nome</label>
                                     <input type="text" class="form-control" name="nome" id="nome"
                                         placeholder="Inserisci il tuo nome ..." v-model="name">
+                                    <div v-if="errors != null" class="text-danger" v-for="(error, index) in errors.name"
+                                        :key="`message-error-${index}`">
+                                        {{ error }}
+                                    </div>
                                 </div>
                                 <div class="col-6 ">
                                     <label for="cognome" class="control-label text-white">Cognome</label>
                                     <input type="text" class="form-control" name="cognome" id="cognome"
                                         placeholder="Inserisci il tuo cognome ..." v-model="surname">
-                            </div>
-                            <div class="col-6 mt-3">
-                                <label for="email" class="control-label text-white">Email</label>
-                                <input type="mmail" class="form-control" name="email" id="email"
-                                    placeholder="Inserisci il tuo indirizzo email ..." v-model="email">
-                            </div>
-                            <div class="col-6 mt-3">
+                                    <div v-if="errors != null" class="text-danger" v-for="(error, index) in errors.surname"
+                                        :key="`message-error-${index}`">
+                                        {{ error }}
+                                    </div>
+                                </div>
+                                <div class="col-6 mt-3">
+                                    <label for="email" class="control-label text-white">Email</label>
+                                    <input type="mmail" class="form-control" name="email" id="email"
+                                        placeholder="Inserisci il tuo indirizzo email ..." v-model="email">
+                                    <div v-if="errors != null" class="text-danger" v-for="(error, index) in errors.email"
+                                        :key="`message-error-${index}`">
+                                        {{ error }}
+                                    </div>
+                                </div>
+                                <div class="col-6 mt-3">
                                     <label for="telefono" class="control-label text-white">Telefono</label>
                                     <input type="phone" class="form-control" name="telefono" id="telefono"
                                         placeholder="Inserisci il tuo numero di telefono ..." v-model="phone">
+                                    <div v-if="errors != null" class="text-danger" v-for="(error, index) in errors.phone"
+                                        :key="`message-error-${index}`">
+                                        {{ error }}
+                                    </div>
                                 </div>
                                 <div class="col-12 mt-3">
                                     <label for="messaggio" class="control-label text-white">Messaggio</label>
                                     <textarea class="form-control" v-model="message" name="messaggio" id="messaggio"
                                         cols="30" rows="5" placeholder="Inserisci il tuo messaggio ..."></textarea>
+                                    <div v-if="errors != null" class="text-danger" v-for="(error, index) in errors.message"
+                                        :key="`message-error-${index}`">
+                                        {{ error }}
+                                    </div>
                                 </div>
                                 <div class="col-6 mt-3">
-                                    <button type="submit" class="send_email btn w-50 btn-custom">Invia</button>
+                                    <button type="submit" class="send_email btn w-50 btn-custom" :disabled="loading">{{
+                                        loading ? 'Invio messaggio ...' : 'Invia' }}</button>
                                 </div>
                             </div>
                         </form>
@@ -109,14 +142,6 @@ export default {
                         </div>
                     </div>
                 </div>
-                <!-- <div class="col-12">
-                            <div class="map-container">
-                                <iframe
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2980.7582459319883!2d13.329527915498431!3d41.66096507924004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13255a5c47297dbd%3A0x83973da3129017b3!2sRefrigerio%20-%20Produzione%20ghiaccio%20alimentare!5e0!3m2!1sit!2sit!4v1678891071313!5m2!1sit!2sit"
-                                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                                    referrerpolicy="no-referrer-when-downgrade"></iframe>
-                            </div>
-                        </div> -->
             </div>
         </div>
     </div>
@@ -135,6 +160,11 @@ export default {
     &:hover {
         background-color: #5f4abd;
     }
+}
+
+.success {
+    color: #3f2b96;
+    font-size: bold;
 }
 
 .bg-fancy {
